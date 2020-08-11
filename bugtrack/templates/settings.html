@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container forms-cont">
+    <div class="row d-flex justify-content-center mx-auto">
+        <div class="col-md-6 col-xs-12">
+            <div class="d-flex justify-content-center mx-auto main-label" >
+                <h2>Account settings</h2>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header text-center"> Welcome {{ current_user.username }} </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
