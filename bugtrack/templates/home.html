@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        {{ date }}
+
+        <div class="card">
+          <div class="card-header text-center"> Search </div>
+        </div>
+        <div class="input-group mb-3 mt-3">
+          <input type="text" class="form-control" placeholder="Issue search" aria-label="Issue search" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-outline-info" type="button">Search</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-header text-center"> Newest issues </div>
+          <ul class="list-group">
+            <li class="list-group-item"> Issue #: | Title:  | Date:  </li>
+            <li class="list-group-item"> Issue #: | Title:  | Date:  </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
