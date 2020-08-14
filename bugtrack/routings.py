@@ -7,9 +7,18 @@ from flask_login import login_user, logout_user, current_user, login_required
 
 
 @app.route('/')
+def welcome():
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+    else:
+        return redirect(url_for('login'))
+
 @app.route('/home')
 def home():
-    return render_template('home.html')
+    if current_user.is_authenticated:
+        return render_template('home.html', title='Home')
+    else:
+        return redirect(url_for('login'))
 
 @app.route('/add', methods=['GET', 'POST'])
 @login_required

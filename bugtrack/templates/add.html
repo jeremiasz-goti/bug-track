@@ -9,8 +9,8 @@
                     <h2>Add Issue</h2>
                 </div>
 
-                <div class="form-group">
-                  {{ form.issue_title.label(class="form-control-label") }}
+                <div class="form-group text-center">
+                  {{ form.issue_title.label(class="form-control-label text-center") }}
                     {% if form.issue_title.errors %}
                       {{ form.issue_title(class="form-control form-control-lg is-invalid sr-only", placeholder="What`s up?") }}
                         <div class="invalid-feedback">
@@ -23,8 +23,8 @@
                     {% endif %}
                 </div>
 
-                <div class="form-group">
-                  {{ form.issue_content.label(class="form-control-label") }}
+                <div class="form-group text-center">
+                  {{ form.issue_content.label(class="form-control-label text-center") }}
                     {% if form.issue_content.errors %}
                       {{ form.issue_content(class="form-control form-control-lg is-invalid sr-only", placeholder='What`s the problem?') }}
                         <div class="invalid-feedback">
@@ -48,28 +48,24 @@
                     {% endfor %}
                 </div>
 
-                <div class="form-group">
-                  <input type="file" class="form-control-file border">
+                <div class="form-group text-center">
+<!--                  <input type="file" class="form-control-file border">-->
+                  {{ form.file.label (class="form-control-file") }}
+                  </br>
+                    {% if form.file.errors %}
+                      {{ form.file(class="form-control-file border is-invalid sr-only", placeholder="Add picture") }}
+                        <div class="invalid-feedback">
+                      {% for error in form.file.errors %}
+                          <span>{{ error }}</span>
+                      {% endfor %}
+                        </div>
+                    {% else %}
+                      {{ form.file(class="form-control-file border") }}
+                    {% endif %}
                 </div>
-
-
-                <p> test group </p>
-                <div class="form-group">
-                  <!-- {{ form.issue_type(class="form-control form-control-lg") }} -->
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                    <label class="form-check-label" for="inlineRadio1">1</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                    <label class="form-check-label" for="inlineRadio2">2</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" disabled>
-                    <label class="form-check-label" for="inlineRadio3">3 (disabled)</label>
-                  </div>
+                <div class="form-group justify-content-center d-flex">
+                    {{ form.submit(class="btn btn-outline-info")}}
                 </div>
-
 
             </form>
             <div class="border-top pt-3">
