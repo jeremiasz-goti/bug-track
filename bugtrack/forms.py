@@ -31,7 +31,6 @@ class LoginForm(FlaskForm):
 class IssueForm(FlaskForm):
     issue_title = StringField('What`s up', validators=[DataRequired()])
     issue_type = RadioField('How bad is it?', choices=[(1, 'Critical'), (2, 'Severe'), (3, 'Needs attention'), (4, 'Cosmetic'), (5, 'Minor defect'), (6, 'To do')], validators=[DataRequired()])
-    # issue_type = RadioField('Issue Type', choices=[('Critical', 'Severe', 'Needs attention', 'Cosmetic', 'Minor defect')], validators=[DataRequired()])
     issue_content = TextAreaField('What`s the problem', validators=[DataRequired()])
     file = FileField('Add file')
     submit = SubmitField('Add Issue')
