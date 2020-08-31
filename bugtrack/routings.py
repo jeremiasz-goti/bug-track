@@ -1,3 +1,5 @@
+import os
+import secrets
 from flask import render_template, url_for, flash, redirect, request
 from bugtrack.forms import RegistrationForm, LoginForm, IssueForm
 from bugtrack.models import User, Issue
@@ -20,12 +22,23 @@ def home():
     else:
         return redirect(url_for('login'))
 
+def save_file(form_file):
+    file_hex = secrets.token_hex(8)
+    f_name, f_ext = os.path.splitext(form_file.filename)
+    file_name = file_hex + f_ext
+    file_path = os.path.join(app.root_path, 'static/files', file_name)
+    form_file.save(file_path)
+    return file_name
+
+
 @app.route('/add', methods=['GET', 'POST'])
 @login_required
 def add():
     form = IssueForm()
     if form.validate_on_submit():
-        issue = Issue(issue_title=form.issue_title.data, issue_content=form.issue_content.data, file=form.file.data, author=current_user)
+        if form.file.data:
+            form_file = save_file(form.file.data)
+        issue = Issue(issue_title=form.issue_title.data, issue_content=form.issue_content.data, file=form_file, author=current_user)
         db.session.add(issue)
         db.session.commit()
         flash(f'Issue added.', 'succes')
