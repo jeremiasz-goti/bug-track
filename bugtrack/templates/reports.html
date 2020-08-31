@@ -10,18 +10,21 @@
     </div>
 </div>
 <div class="container">
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="card">
-        <div class="card-header text-center"> Reports history </div>
-        <ul class="list-group">
-          <li class="list-group-item"> Issue #: | Title:  | Date:  </li>
-          <li class="list-group-item"> Issue #: | Title:  | Date:  </li>
-        </ul>
-      </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-header text-center"> Newest issues </div>
+          <ul class="list-group">
 
+            {% for i in issues %}
+              <li class="list-group-item"> Issue #: {{ i.id }} | Title: {{ i.issue_title }} | Date: {{ i.date }}  </li>
+            {% endfor %}
+
+          </ul>
+        </div>
+
+      </div>
     </div>
-  </div>
 </div>
 
 {% endblock %}

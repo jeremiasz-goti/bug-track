@@ -5,6 +5,7 @@ from bugtrack.forms import RegistrationForm, LoginForm, IssueForm
 from bugtrack.models import User, Issue
 from bugtrack import app, db, bcrypt
 from flask_login import login_user, logout_user, current_user, login_required
+from sqlalchemy import desc
 
 
 
@@ -15,10 +16,11 @@ def welcome():
     else:
         return redirect(url_for('login'))
 
-@app.route('/home')
+@app.route('/home', methods=['GET'])
 def home():
     if current_user.is_authenticated:
-        return render_template('home.html', title='Home')
+        issues = db.session.query(Issue).order_by(desc('id'))
+        return render_template('home.html', title='Home', issues=issues)
     else:
         return redirect(url_for('login'))
 
@@ -31,24 +33,27 @@ def save_file(form_file):
     return file_name
 
 
-@app.route('/add', methods=['GET', 'POST'])
+@app.route('/issue/add', methods=['GET', 'POST'])
 @login_required
 def add():
     form = IssueForm()
+    form_file = None
     if form.validate_on_submit():
         if form.file.data:
             form_file = save_file(form.file.data)
         issue = Issue(issue_title=form.issue_title.data, issue_content=form.issue_content.data, file=form_file, author=current_user)
         db.session.add(issue)
         db.session.commit()
-        flash(f'Issue added.', 'succes')
+        flash(f'Issue added.', 'success')
         return redirect(url_for('home'))
     return render_template('add.html', title='Add Issue', form=form)
 
-@app.route('/reports')
+@app.route('/reports', methods=['GET'])
 @login_required
 def reports():
-    return render_template('reports.html', title='My reports')
+    issues = db.session.query(Issue).order_by(desc('id'))
+
+    return render_template('reports.html', title='My reports', issues=issues)
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
