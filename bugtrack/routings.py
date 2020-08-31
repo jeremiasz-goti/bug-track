@@ -25,7 +25,7 @@ def home():
 def add():
     form = IssueForm()
     if form.validate_on_submit():
-        issue = Issue(issue_title=form.issue_title.data, issue_type=form.issue_type.data, issue_content=form.issue_content.data, file=form.file.data)
+        issue = Issue(issue_title=form.issue_title.data, issue_content=form.issue_content.data, file=form.file.data)
         db.session.add(issue)
         db.session.commit()
         flash(f'Issue added.', 'succes')

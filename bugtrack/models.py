@@ -18,13 +18,11 @@ class User(db.Model, UserMixin):
 
 class Issue(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     issue_title = db.Column(db.String(100), nullable=False)
-    # add issue type column
-    issue_type = db.Column(db.String, nullable=False)
     issue_content = db.Column(db.Text, nullable=False)
     file = db.Column(db.String(20))
     date = db.Column(db.DateTime, default=datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):
         return f"Issue('{self.id}', '{self.issue_title}', '{self.date}' )"

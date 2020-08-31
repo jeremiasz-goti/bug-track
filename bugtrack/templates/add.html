@@ -3,7 +3,7 @@
     <div class="container forms-cont">
         <div class="row d-flex justify-content-center mx-auto">
             <div class="col-xs-12 col-md-8">
-            <form method='POST' action=''>
+            <form method='POST' action='' enctype="multipart/form-data">
               {{ form.hidden_tag() }}
                 <div class="d-flex justify-content-center mx-auto main-label" >
                     <h2>Add Issue</h2>
@@ -38,18 +38,6 @@
                 </div>
 
                 <div class="form-group text-center">
-                  {{ form.issue_type.label(class="form-control-label") }}
-                  </br>
-                    {% for subfield in form.issue_type %}
-                    <tr>
-                      <td>{{ subfield }}</td>
-                      <td>{{ subfield.label }}</td>
-                    </tr>
-                    {% endfor %}
-                </div>
-
-                <div class="form-group text-center">
-<!--                  <input type="file" class="form-control-file border">-->
                   {{ form.file.label (class="form-control-file") }}
                   </br>
                     {% if form.file.errors %}
