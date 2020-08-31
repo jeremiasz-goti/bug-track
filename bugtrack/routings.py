@@ -51,7 +51,7 @@ def add():
 @app.route('/reports', methods=['GET'])
 @login_required
 def reports():
-    issues = db.session.query(Issue).order_by(desc('id'))
+    issues = db.session.query(User.issues).order_by(desc('id'))
 
     return render_template('reports.html', title='My reports', issues=issues)
 
