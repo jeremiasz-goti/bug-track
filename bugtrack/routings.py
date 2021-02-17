@@ -7,7 +7,21 @@ from bugtrack import app, db, bcrypt
 from flask_login import login_user, logout_user, current_user, login_required
 from sqlalchemy import desc
 
+"""
 
+File for handling application routes.
+
+Define basic route by
+
+@app.route('/endpoint')
+def endpoint():
+    define forms and logic for endpoint
+
+    return render_template ('endpoint.html', title='endpoint', data=data)
+
+Use @login_required for handling user sessions and restrictions.
+
+"""
 
 @app.route('/')
 def welcome():

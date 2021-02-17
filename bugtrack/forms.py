@@ -4,7 +4,17 @@ from wtforms import StringField, PasswordField, SubmitField, BooleanField, Radio
 from wtforms.validators import DataRequired, Length, EqualTo, Email, ValidationError
 from bugtrack.models import User
 
+"""
 
+File used to create all forms in application.
+Use class methods for creating validators eg. validate_email
+
+Create basic form by using
+
+class BasicForm(FlaskForm):
+    test = StringField('test', validators=[DataRequired(), Length(min=1, max=10)])
+
+"""
 
 class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired(), Length(min=2, max=20)])
